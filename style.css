@@ -23,7 +23,7 @@ main {
 }
 
 .select-demo__item {
-	/* display: flex; */
+	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 }
@@ -40,19 +40,19 @@ button {
 }
 
 select {
-	/* appearance: none; */
 	/* font-family: inherit; */
-	/* width: fit-content; */
-	/* background-color: white; */
-	/* padding: 0.5rem; */
-	/* border: 1px solid #ccc; */
-	/* border-radius: 4px; */
+	width: fit-content;
+	/* appearance: none; */
+	background-color: white;
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 /* Custom styles for select elements */
 #single-select,
 ::picker(select) {
-	/* appearance: base-select;
+	appearance: base-select;
 	transition: 0.4s;
 
 	&:hover,
@@ -86,80 +86,97 @@ select {
 
 	option:not(option:last-of-type) {
 		border-bottom: none;
-	} */
+	}
 }
 
-#fancy-select {
-	appearance: base-select;
-	transition: 0.4s;
-	background-color: white;
-	min-width: 250px;
-	max-width: max-content;
-	border-radius: 0;
-	padding: 0.5rem;
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	height: 50px;
-
-	&::picker-icon {
-		content: url("chevron.svg");
-		display: inline-block;
-		margin-top: 3px;
-	}
-
-	&:open::picker-icon {
-		content: url("chevron-up.svg");
-	}
-
-	&::picker(select) {
-		border: none;
-		top: calc(anchor(bottom) + 1px);
-		left: anchor(0%);
-	}
-
-	option {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-
-		border: 1px solid #ddd;
-		padding: 10px;
+@supports selector(#fancy-select::picker-icon) {
+	#fancy-select {
+		appearance: base-select;
 		transition: 0.4s;
-
-		&::checkmark {
-			content: url("tick.svg");
-			order: 1;
-			margin-left: auto;
-		}
-	}
-
-	option:not(option:last-of-type) {
-		border-bottom: none;
-	}
-
-	option:checked:not(:first-of-type) {
-		font-weight: medium;
-		background-color: lightblue;
-		border: lightblue;
-	}
-
-	option:first-of-type:hover,
-	option:first-of-type:focus {
-		background: inherit;
-		color: inherit;
-		cursor: default;
-	}
-
-	selectedcontent {
-		color: #333;
+		background-color: white;
+		min-width: 250px;
+		max-width: max-content;
+		border-radius: 0;
+		padding: 0.5rem;
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+		height: 50px;
+
+		&::picker-icon {
+			content: url("chevron.svg");
+			display: inline-block;
+			margin-top: 3px;
+		}
+
+		&:open::picker-icon {
+			content: url("chevron-up.svg");
+		}
+
+		&::picker(select) {
+			appearance: base-select;
+			border: none;
+			top: calc(anchor(bottom) + 1px);
+			left: anchor(0%);
+
+			/* animation */
+			opacity: 0;
+			transition: all 0.6s allow-discrete;
+		}
+
+		&::picker(select):popover-open {
+			opacity: 1;
+		}
+
+		option {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+
+			border: 1px solid #ddd;
+			padding: 10px;
+			transition: 0.4s;
+
+			&::checkmark {
+				content: url("tick.svg");
+				order: 1;
+				margin-left: auto;
+			}
+		}
+
+		option:not(option:last-of-type) {
+			border-bottom: none;
+		}
+
+		option:checked:not(:first-of-type) {
+			font-weight: medium;
+			background-color: lightblue;
+			border: lightblue;
+		}
+
+		option:first-of-type:hover,
+		option:first-of-type:focus {
+			background: inherit;
+			color: inherit;
+			cursor: default;
+		}
+
+		selectedcontent {
+			color: #333;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
 	}
 }
 
 .icon {
 	height: 32px;
 	vertical-align: middle;
+}
+
+@starting-style {
+	#fancy-select::picker(select):popover-open {
+		opacity: 0;
+	}
 }
