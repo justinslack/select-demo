@@ -1,6 +1,6 @@
 # New CSS Methods for Styling Select Dropdowns
 
-This repository explores modern CSS techniques for customizing the appearance of `<select>` dropdown elements. It covers approaches that go beyond default browser styles, enabling developers to create visually appealing and accessible dropdowns without relying heavily on JavaScript.
+This repository explores modern CSS techniques for customising the appearance of `<select>` dropdown elements. It covers approaches that go beyond default browser styles, enabling developers to create visually appealing and accessible dropdowns without relying on JavaScript.
 
 ## Features
 
