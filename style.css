@@ -11,27 +11,155 @@ body {
 main {
 	padding: 1rem;
 	display: grid;
-	grid-template-rows: 200px 1fr;
+	grid-template-rows: 100px 1fr;
 	max-width: 1000px;
 	margin: auto;
 }
 
 .select-demo {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(2, 1fr);
 	gap: 4rem;
 }
 
 .select-demo__item {
-	display: flex;
+	/* display: flex; */
 	flex-direction: column;
 	gap: 1rem;
 }
 
+button {
+	background-color: #007bff;
+	width: fit-content;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
 select {
+	/* appearance: none; */
 	/* font-family: inherit; */
 	/* width: fit-content; */
+	/* background-color: white; */
 	/* padding: 0.5rem; */
 	/* border: 1px solid #ccc; */
 	/* border-radius: 4px; */
+}
+
+/* Custom styles for select elements */
+#single-select,
+::picker(select) {
+	/* appearance: base-select;
+	transition: 0.4s;
+
+	&:hover,
+	&:focus {
+		background: #ddd;
+	}
+
+	&::picker-icon {
+		color: #999;
+		transition: 0.4s rotate;
+	}
+
+	&:open::picker-icon {
+		rotate: 180deg;
+	}
+
+	&::picker(select) {
+		border: none;
+	}
+
+	option {
+		display: flex;
+		justify-content: flex-start;
+		gap: 20px;
+
+		border: 2px solid #ddd;
+		background: #eee;
+		padding: 10px;
+		transition: 0.4s;
+	}
+
+	option:not(option:last-of-type) {
+		border-bottom: none;
+	} */
+}
+
+#fancy-select {
+	appearance: base-select;
+	transition: 0.4s;
+	background-color: white;
+	min-width: 250px;
+	max-width: max-content;
+	border-radius: 0;
+	padding: 0.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	height: 50px;
+
+	&::picker-icon {
+		content: url("chevron.svg");
+		display: inline-block;
+		margin-top: 3px;
+	}
+
+	&:open::picker-icon {
+		content: url("chevron-up.svg");
+	}
+
+	&::picker(select) {
+		border: none;
+		top: calc(anchor(bottom) + 1px);
+		left: anchor(0%);
+	}
+
+	option {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		border: 1px solid #ddd;
+		padding: 10px;
+		transition: 0.4s;
+
+		&::checkmark {
+			content: url("tick.svg");
+			order: 1;
+			margin-left: auto;
+		}
+	}
+
+	option:not(option:last-of-type) {
+		border-bottom: none;
+	}
+
+	option:checked:not(:first-of-type) {
+		font-weight: medium;
+		background-color: lightblue;
+		border: lightblue;
+	}
+
+	option:first-of-type:hover,
+	option:first-of-type:focus {
+		background: inherit;
+		color: inherit;
+		cursor: default;
+	}
+
+	selectedcontent {
+		color: #333;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+}
+
+.icon {
+	height: 32px;
+	vertical-align: middle;
 }
